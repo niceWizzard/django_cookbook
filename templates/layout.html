@@ -17,8 +17,8 @@
 
 </head>
 <body>
-    <header class="bg-blue-200 min-h-[7vh]">
-        <div class="flex px-4 py-2 justify-between">
+    <header class="bg-blue-200 h-[7vh]">
+        <div class="h-full flex px-4 py-2 justify-between items-center">
             <h1 class="text-lg">Cookbook</h1>
             <nav class="flex gap-2">
                 <a href="/">About</a>
@@ -29,5 +29,9 @@
     <main>
         {% block content %}{% endblock content %}
     </main>
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-gray-300 py-6 mt-12 text-center">
+        <p>&copy; 2025 Django Cookbook. All Rights Reserved.</p>
+    </footer>
 </body>
 </html>
