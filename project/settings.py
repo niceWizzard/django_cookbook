@@ -138,9 +138,9 @@ STATIC_ROOT =  BASE_DIR / "staticfiles"
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-NPM_BIN_PATH = 'npm.cmd'
-if platform.system() == "Linux":
-    NPM_BIN_PATH = "~/nodejs/bin/npm"
+
+if platform.system() == "Windows":
+    NPM_BIN_PATH = 'npm.cmd'
 TAILWIND_APP_NAME = 'theme'
 INTERNAL_IPS = [
     "127.0.0.1",
