@@ -18,14 +18,19 @@ import platform
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
+from dotenv import load_dotenv
+env_path = load_dotenv(os.path.join(BASE_DIR, '.env'))
+load_dotenv(env_path)
+
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-u$0b^&7erm933!80%96-(1mg^z(0mq1p$^f=x3$d*xm2$jixj5'
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-u$0b^&7erm933!80%96-(1mg^z(0mq1p$^f=x3$d*xm2$jixj5')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 
 ALLOWED_HOSTS = [
     "rizzard.pythonanywhere.com",
