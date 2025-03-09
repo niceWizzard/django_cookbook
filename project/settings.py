@@ -140,7 +140,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 if platform.system() == "Windows":
-    NPM_BIN_PATH = 'npm.cmd'
+    NPM_BIN_PATH = "npm.cmd"
+else:
+    NPM_BIN_PATH = "/home/rizzard/nodejs/bin/npm" 
+
+
 TAILWIND_APP_NAME = 'theme'
 INTERNAL_IPS = [
     "127.0.0.1",
