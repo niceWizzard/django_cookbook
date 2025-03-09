@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 {% load static %}
+{% load static tailwind_tags %}
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -10,6 +12,9 @@
         {% endblock title %}
     </title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% tailwind_css %}
+
+
 </head>
 <body>
     {% block content %}{% endblock content %}
