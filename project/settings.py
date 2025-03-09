@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
+import os
 from pathlib import Path
 import platform
 
@@ -142,7 +143,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 if platform.system() == "Windows":
     NPM_BIN_PATH = "npm.cmd"
 else:
-    NPM_BIN_PATH = "/home/rizzard/nodejs/bin/npm" 
+    NPM_BIN_PATH = os.path.expanduser("~/nodejs/bin/npm")
 
 
 TAILWIND_APP_NAME = 'theme'
