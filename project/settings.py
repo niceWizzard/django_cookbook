@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'theme',
     'project',
     'users',
+    'recipes',
 ]
 
 MIDDLEWARE = [
