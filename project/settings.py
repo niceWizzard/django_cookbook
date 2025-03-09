@@ -25,8 +25,11 @@ SECRET_KEY = 'django-insecure-u$0b^&7erm933!80%96-(1mg^z(0mq1p$^f=x3$d*xm2$jixj5
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = [
+    "rizzard.pythonanywhere.com",
+    '127.0.0.1'
+]
+CSRF_TRUSTED_ORIGINS = ['https://rizzard.pythonanywhere.com']
 
 # Application definition
 
