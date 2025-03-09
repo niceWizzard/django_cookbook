@@ -1,6 +1,77 @@
 {% extends "layout.html" %}
-
-{% block title %}Home{% endblock title %}
+{% load static %}
+{% block title %}Django Cookbook!{% endblock title %}
 {% block content %}
-    <h1>HOME PAGE!</h1>
+
+<section class="h-full mt-6 flex flex-col items-center gap-4">
+    <h1 class="text-4xl font-bold">Create the best recipes</h1>
+    <span class="font-light text-lg">
+        Explore the best recipes you can ever find.
+    </span>
+    <img src="{% static "img/home-cover.jpg" %}" alt="Cover image"
+    class="w-full max-w-3xl rounded-lg shadow-lg object-cover h-64 sm:h-80 md:h-96">
+    
+</section>
+
+<section class="h-full mt-6 flex flex-col items-center gap-4">
+    <h1 class="text-4xl">Join a community of enthusiasts</h1>
+    <span class="text-md text-gray-600 text-center max-w-lg">
+        Share your favorite recipes, learn from others, and become part of an exciting culinary journey.
+    </span>
+    <a href="/" class="bg-blue-400 px-4 py-2 text-gray-50 text-2xl rounded-sm hover:bg-blue-500 transition">
+        Register now!
+    </a>
+</section>
+
+<!-- Featured Recipes -->
+<section class="mt-12 px-4 w-full max-w-5xl flex flex-col gap-4  items-center flex-grow">
+    <h2 class="text-3xl font-bold text-center">Featured Recipes</h2>
+    <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Recipe Card -->
+        <div class="bg-white shadow-md rounded-lg overflow-hidden">
+            <img src="{% static 'img/pasta.jpg' %}" alt="Recipe 1" class="w-full h-48 object-cover">
+            <div class="p-4">
+                <h3 class="text-xl font-semibold">Delicious Pasta</h3>
+                <p class="text-gray-600 text-sm mt-2">A simple yet delicious homemade pasta recipe.</p>
+                <a href="#" class="text-blue-500 font-semibold mt-2 inline-block">Read More</a>
+            </div>
+        </div>
+        <div class="bg-white shadow-md rounded-lg overflow-hidden">
+            <img src="{% static 'img/ramen.jpg' %}" alt="Recipe 2" class="w-full h-48 object-cover">
+            <div class="p-4">
+                <h3 class="text-xl font-semibold">Spicy Ramen</h3>
+                <p class="text-gray-600 text-sm mt-2">A flavorful and spicy ramen recipe to warm your soul.</p>
+                <a href="#" class="text-blue-500 font-semibold mt-2 inline-block">Read More</a>
+            </div>
+        </div>
+        <div class="bg-white shadow-md rounded-lg overflow-hidden">
+            <img src="{% static 'img/pancakes.jpg' %}" alt="Recipe 3" class="w-full h-48 object-cover">
+            <div class="p-4">
+                <h3 class="text-xl font-semibold">Classic Pancakes</h3>
+                <p class="text-gray-600 text-sm mt-2">Fluffy pancakes perfect for breakfast.</p>
+                <a href="#" class="text-blue-500 font-semibold mt-2 inline-block">Read More</a>
+            </div>
+        </div>
+    </div>
+    <a href="/" class="text-center max-w-lg  w-full bg-blue-400 px-4 py-2 text-gray-50 text-2xl rounded-sm hover:bg-blue-500 transition">
+        View more 
+    </a>
+</section>
+
+<!-- Testimonials -->
+<section class="mt-12 bg-gray-100 py-12 px-4">
+    <h2 class="text-3xl font-bold text-center">What Our Users Say</h2>
+    <div class="mt-6 flex flex-col sm:flex-row gap-6 justify-center">
+        <div class="bg-white shadow-md p-6 rounded-lg max-w-sm">
+            <p class="text-gray-700">"This cookbook has completely changed the way I cook at home. Highly recommended!"</p>
+            <span class="block mt-4 text-gray-500 font-semibold">- Alex Johnson</span>
+        </div>
+        <div class="bg-white shadow-md p-6 rounded-lg max-w-sm">
+            <p class="text-gray-700">"I love how easy it is to find new recipes. The community is amazing!"</p>
+            <span class="block mt-4 text-gray-500 font-semibold">- Sarah Lee</span>
+        </div>
+    </div>
+</section>
+
+
 {% endblock content %}
