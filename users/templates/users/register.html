@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block title %}
+    Register - Django Cookbook
+{% endblock title %}
+
+{% block content %}
+<section class="min-h-screen flex flex-col justify-center items-center">
+    <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
+        <h1 class="text-3xl font-bold text-center mb-4">Create an Account</h1>
+
+        <form method="POST" class="flex flex-col gap-4">
+            {% csrf_token %}
+            
+            <div class="flex flex-col gap-2">
+                {{ form.username.label_tag }}
+                {{ form.username }}
+                {{ form.username.errors }}
+            </div>
+
+            <div class="flex flex-col gap-2">
+                {{ form.email.label_tag }}
+                {{ form.email }}
+                {{ form.email.errors }}
+            </div>
+
+            <div class="flex flex-col gap-2">
+                {{ form.password1.label_tag }}
+                {{ form.password1 }}
+                {{ form.password1.errors }}
+            </div>
+
+            <div class="flex flex-col gap-2">
+                {{ form.password2.label_tag }}
+                {{ form.password2 }}
+                {{ form.password2.errors }}
+            </div>
+
+            <button type="submit" class="w-full bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md">
+                Register
+            </button>
+        </form>
+
+        <p class="text-sm text-center mt-4">
+            Already have an account? <a href="{% url 'users:login' %}" class="text-blue-500 hover:underline">Login here</a>.
+        </p>
+    </div>
+</section>
+{% endblock content %}
