@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'project',
     'users',
     'recipes',
+    'django_cleanup.apps.CleanupConfig',
 ]
 
 MIDDLEWARE = [
