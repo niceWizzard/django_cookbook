@@ -33,6 +33,25 @@
         {% endif %}
         
         <p class="mt-2 text-gray-700 whitespace-pre-line">{{ recipe.recipe}}</p>
+        <hr>
+        <div class="flex justify-between items-center">
+            <h4 class="text-lg font-semibold">
+                {{reviews.count}} Reviews 
+            </h4>
+            <a href="{% url "recipes:create-review" recipe.id %}" class="bg-blue-400 px-3 py-2 rounded-md text-white">Review</a>
+        </div>
+        {% for review in reviews %}
+            <div class="shadow-md px-4 py-2 rounded-sm">
+                <span class="font-bold text-md">
+                    By {{review.user}} ({{review.rating}}/5)
+                </span>
+                <br>
+                <span class="italic text-gray-400 font-light text-sm">
+                    {{review.created_at}}
+                </span>
+                <p>Comment: {{review.comment}}</p>
+            </div>
+        {% endfor %}
     </div>
 </section>
 {% endblock content %}

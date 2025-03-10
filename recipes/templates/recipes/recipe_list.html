@@ -27,6 +27,7 @@
                             {% endfor %}
                         </div>
                     <p class="mt-2 text-gray-700">{{ recipe.recipe|truncatechars:100 }}</p>
+                    <p>Average Rating: {{ recipe.average_rating}} / 5</p>
                     <a href="/recipes/{{recipe.id}}" class="text-blue-500 font-semibold mt-2 inline-block hover:underline">Read More</a>
                 </div>
             {% endfor %}
