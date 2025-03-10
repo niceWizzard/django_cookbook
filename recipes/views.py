@@ -1,5 +1,5 @@
-from django.http import HttpRequest, HttpResponseRedirect
-from django.shortcuts import render, get_object_or_404
+from django.http import HttpRequest, HttpResponseForbidden, HttpResponseRedirect
+from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from recipes.models import Recipe
 from recipes.forms import RecipeForm
@@ -22,6 +22,18 @@ def create_page(req: HttpRequest):
             return HttpResponseRedirect("/")  # Redirect to home or list page
     return render(req, "recipes/create_recipe.html", {"form": form})
 
+@login_required
+def edit_page(req: HttpRequest, id: str):
+    recipe = get_object_or_404(Recipe, id=id)
+    if recipe.author != req.user:
+        return HttpResponseForbidden("You are not allowed to do that.")
+    form = RecipeForm(instance=recipe)
+    if req.method == "POST":
+        form = RecipeForm(req.POST, req.FILES, instance=recipe)
+        if form.is_valid():
+            recipe.save()
+            return redirect(f"/recipes/{id}") 
+    return render(req, "recipes/edit_recipe.html", {"form": form})
 
 def recipe_page(req : HttpRequest, id: str):
     recipe = get_object_or_404(Recipe, id=id)
