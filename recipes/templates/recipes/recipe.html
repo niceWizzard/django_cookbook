@@ -38,7 +38,9 @@
             <h4 class="text-lg font-semibold">
                 {{reviews.count}} Reviews 
             </h4>
+            {% if user.is_authenticated and user != recipe.author %}
             <a href="{% url "recipes:create-review" recipe.id %}" class="bg-blue-400 px-3 py-2 rounded-md text-white">Review</a>
+            {% endif %}
         </div>
         {% for review in reviews %}
             <div class="shadow-md px-4 py-2 rounded-sm">
