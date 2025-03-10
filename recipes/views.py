@@ -1,4 +1,4 @@
-from django.http import HttpRequest, HttpResponseForbidden, HttpResponseRedirect
+from django.http import HttpRequest, HttpResponseForbidden, HttpResponseRedirect, Http404
 from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from recipes.models import Recipe
@@ -9,6 +9,22 @@ def list_page(req: HttpRequest):
     for recipe in recipes:
         recipe.tags_list = recipe.tags.split(',')
     return render(req, "recipes/recipe_list.html", {"recipes": recipes})
+
+
+def delete_route(req : HttpRequest, id : str):
+    if req.method != "POST":
+        return Http404("Not found")
+    recipe = get_object_or_404(Recipe, id=id)
+    if recipe.author != req.user:
+        return HttpResponseForbidden("You are not allowed to delete this recipe.")
+    recipe.delete() 
+    return redirect("/recipes/")  
+
+
+def recipe_page(req : HttpRequest, id: str):
+    recipe = get_object_or_404(Recipe, id=id)
+    recipe.tags_list = recipe.tags.split(',')
+    return render(req, 'recipes/recipe.html', {'recipe':recipe})
 
 @login_required
 def create_page(req: HttpRequest):
@@ -35,7 +51,3 @@ def edit_page(req: HttpRequest, id: str):
             return redirect(f"/recipes/{id}") 
     return render(req, "recipes/edit_recipe.html", {"form": form})
 
-def recipe_page(req : HttpRequest, id: str):
-    recipe = get_object_or_404(Recipe, id=id)
-    recipe.tags_list = recipe.tags.split(',')
-    return render(req, 'recipes/recipe.html', {'recipe':recipe})

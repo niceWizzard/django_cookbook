@@ -3,6 +3,17 @@
 {% block content %}
 <section class="max-w-3xl mx-auto mt-10 p-6 bg-white ">
     <h1 class="text-2xl font-bold text-center">{{recipe.title}}</h1>
+    {% if user == recipe.author %}
+    <div class="flex gap-2">
+        <form action="{% url 'recipes:delete' recipe.id %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded-md">Delete</button>
+        </form>
+        <a href="{% url "recipes:edit" recipe.id %}" class="bg-slate-800 text-white px-4 py-2 rounded-md">
+            Edit
+        </a>
+    </div>
+    {% endif %}
     <div class="mt-6 flex flex-col gap-4">
         <div class="flex justify-between">
             <span class="text-sm text-gray-500 italic">Posted at: {{recipe.created_at}}</span>
