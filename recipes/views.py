@@ -1,5 +1,5 @@
 from django.http import HttpRequest, HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from recipes.models import Recipe
 from recipes.forms import RecipeForm
@@ -19,3 +19,8 @@ def create_page(req: HttpRequest):
             recipe.save()
             return HttpResponseRedirect("/")  # Redirect to home or list page
     return render(req, "recipes/create_recipe.html", {"form": form})
+
+
+def recipe_page(req : HttpRequest, id: str):
+    recipe = get_object_or_404(Recipe, id=id)
+    return render(req, 'recipes/recipe.html', {'recipe':recipe})
