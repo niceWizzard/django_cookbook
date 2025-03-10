@@ -11,7 +11,7 @@
     {% if recipes %}
         <div class="mt-6 flex flex-col sm:flex-row flex-wrap gap-4">
             {% for recipe in recipes %}
-                <div class="p-4 border rounded-md shadow-sm w-full sm:w-64 md:w-80">
+                <div class="p-4 border rounded-md shadow-sm w-full sm:w-64 md:w-80 flex flex-col gap-2 items-start justify-between">
                     <h3 class="text-xl font-semibold">{{ recipe.title }}</h3>
                     <p class="text-gray-600 text-sm">By {{ recipe.author.username }}</p>
                     <p class="text-gray-600 text-sm">{{ recipe.updated_at }}</p>
@@ -21,6 +21,11 @@
                         {% load static %}
                         <img src="{% static 'img/pancakes.jpg' %}" alt="Fallback Image" class="mt-2 w-full h-40 object-cover rounded-md">
                     {% endif %}
+                        <div class="flex gap-2">
+                            {% for tag in recipe.tags_list %}
+                                <span class="bg-blue-100 text-blue-800 px-2 py-1 text-xs rounded-md">{{ tag }}</span>
+                            {% endfor %}
+                        </div>
                     <p class="mt-2 text-gray-700">{{ recipe.recipe|truncatechars:100 }}</p>
                     <a href="/recipes/{{recipe.id}}" class="text-blue-500 font-semibold mt-2 inline-block hover:underline">Read More</a>
                 </div>

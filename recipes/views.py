@@ -6,6 +6,8 @@ from recipes.forms import RecipeForm
 
 def list_page(req: HttpRequest):
     recipes = Recipe.objects.all()
+    for recipe in recipes:
+        recipe.tags_list = recipe.tags.split(',')
     return render(req, "recipes/recipe_list.html", {"recipes": recipes})
 
 @login_required
@@ -23,4 +25,5 @@ def create_page(req: HttpRequest):
 
 def recipe_page(req : HttpRequest, id: str):
     recipe = get_object_or_404(Recipe, id=id)
+    recipe.tags_list = recipe.tags.split(',')
     return render(req, 'recipes/recipe.html', {'recipe':recipe})
