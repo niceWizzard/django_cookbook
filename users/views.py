@@ -6,7 +6,7 @@ from django.contrib import messages
 
 def login_page(req: HttpRequest):
     if req.user.is_authenticated:
-        return redirect("/")  # Redirect if already logged in
+        return redirect("/recipes/")  # Redirect if already logged in
 
     form = AuthenticationForm()
     if req.method == "POST":
@@ -14,7 +14,7 @@ def login_page(req: HttpRequest):
         if form.is_valid():
             user = form.get_user()
             login(req, user)
-            return redirect("/")  # Redirect to homepage or dashboard
+            return redirect("/recipes/")  # Redirect to homepage or dashboard
         else:
             messages.error(req, "Invalid username or password.")
 
@@ -22,7 +22,7 @@ def login_page(req: HttpRequest):
 
 def register_page(req: HttpRequest):
     if req.user.is_authenticated:
-        return redirect("/")  # Redirect if already logged in
+        return redirect("/recipes/")  # Redirect if already logged in
 
     form = UserCreationForm()
     if req.method == "POST":
@@ -31,7 +31,7 @@ def register_page(req: HttpRequest):
             user = form.save()
             login(req, user)  # Log in the user after registration
             messages.success(req, "Registration successful! Welcome.")
-            return redirect("/")  # Redirect to homepage or dashboard
+            return redirect("/recipes/")  # Redirect to homepage or dashboard
     return render(req, 'users/register.html', {"form": form})
 
 def logout_route(req : HttpRequest):
