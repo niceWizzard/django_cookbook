@@ -4,6 +4,8 @@ from django.contrib.auth.models import User
 # Create your models here.
 class Recipe(models.Model):
     id = models.AutoField(primary_key=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
     image = models.ImageField(blank=True,null=True)
     title = models.CharField(max_length=72)
     tags = models.CharField(max_length=256)
