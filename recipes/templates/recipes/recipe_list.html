@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+{% block title %}Recipe List - Django Cookbook{% endblock title %}
+
+{% block content %}
+<section class="max-w-3xl mx-auto mt-10 p-6 bg-white shadow-md rounded-lg">
+    <h1 class="text-2xl font-bold text-center">Latest Recipes</h1>
+
+    {% if recipes %}
+        <div class="mt-6 flex flex-col gap-4">
+            {% for recipe in recipes %}
+                <div class="p-4 border rounded-md shadow-sm">
+                    <h3 class="text-xl font-semibold">{{ recipe.title }}</h3>
+                    <p class="text-gray-600 text-sm">By {{ recipe.author.username }}</p>
+                    {% if recipe.image %}
+                        <img src="{{ recipe.image.url }}" alt="{{ recipe.title }}" class="mt-2 w-full h-40 object-cover rounded-md">
+                    {% endif %}
+                    <p class="mt-2 text-gray-700">{{ recipe.recipe|truncatechars:100 }}</p>
+                    <a href="#" class="text-blue-500 font-semibold mt-2 inline-block hover:underline">Read More</a>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="mt-4 text-gray-500 text-center">No recipes available.</p>
+    {% endif %}
+
+    <div class="mt-6 text-center">
+        <a href="{% url 'recipes:create' %}" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition">
+            Create New Recipe
+        </a>
+    </div>
+</section>
+{% endblock content %}

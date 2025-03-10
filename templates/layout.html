@@ -27,6 +27,7 @@
                     {% csrf_token %}
                     <button>Logout</button>
                 </form>
+                <a href="{% url "recipes:create" %}">Create</a>
                 {% else %}
                 <a href="{% url "users:login" %}">Login</a>
                 {% endif %}
